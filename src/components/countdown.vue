@@ -1,30 +1,21 @@
 <template>
-	<p :style="{color: col}">{{time}}</p>
+  <div class="blog-post">
+    <h3>{{ post.title }}</h3>
+    <button>
+      Enlarge text
+    </button>
+    <div v-html="post.content"></div>
+  </div>
 </template>
 
 
 <script>
-	export default{
-		data(){
-			return{
-				time: 10
-			}
-		},
-		mounted(){
-			var vm = this;
-			var t = setInterval(function(){
-				vm.time--;
-				if(vm.time == 0){
-					vm.$emit("end");
-					clearInterval(t);
-				}
-			},1000)
-		},
-		props:{
-			col:{
-				type: String,
-				default: '#000'
-			}
-		}
-	}
+  export default {
+    data() {
+    },
+    mounted() {
+    },
+    props: {
+    }
+  };
 </script>

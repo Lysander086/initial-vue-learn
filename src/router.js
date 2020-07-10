@@ -1,11 +1,10 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Demo from './views/Demo.vue'
-import ModelDemo from './views/ModelDemo.vue'
-import DemoComponent from './views/DemoComponent.vue'
-import demo9 from '@/pages/demo9'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Demo from './views/Demo.vue';
+import ModelDemo from './views/ModelDemo.vue';
+import DemoComponent from './views/DemoComponent.vue';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
@@ -21,18 +20,13 @@ const routes = [
     path: "/demoComponent",
     name: 'DemoComponent',
     component: DemoComponent
-  }, {
-    path: '/demo9/:userId',
-    name: 'demo9',
-    component: demo9
-
-  },
-]
+  }
+];
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+});
 
-export default router
+export default router;
