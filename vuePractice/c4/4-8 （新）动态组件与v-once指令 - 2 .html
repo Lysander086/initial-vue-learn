@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template file</title>
+    <!-- vue dependency   -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <component :is="type"></component>
+
+</div>
+</body>
+<script>
+    Vue.component('childOne', {
+        template: '<div>child 1 </div>'
+    });
+    Vue.component('childTwo', {
+        template: '<div>child 2 </div>'
+    });
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            type: 'child-one'
+        },
+        methods: {
+            handleClick() {
+                this.type = (this.type === "child-one" ? "child-two" : "child-one");
+            }
+        }
+    });
+</script>
+
+</html>
+<style>
+    body {
+        font-size: xx-large;
+    }
+</style>

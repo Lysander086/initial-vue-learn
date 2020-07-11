@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template file</title>
+    <!-- vue dependency   -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <!--    <div ref="hello" @click="handleClick"></div>-->
+    <counter :count="0" @inc="handleIncrease"></counter>
+    <counter :count="1" @inc="handleIncrease"></counter>
+        <div>{{total}}</div>
+</div>
+</body>
+<script>
+    var counter = {
+        template: '<div @click="handleClick">{{number}}</div>',
+        props: ['count'], // 使用父组件传递过来的值, 尽量只能读取
+        data() {
+            return {
+                number: this.count
+            };
+        },
+        methods: {
+            handleClick() {
+                this.number++;
+                this.$emit('inc', 1);
+            }
+        }
+    };
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            total: 1
+        },
+        methods: {
+            handleIncrease(step) {
+                this.total += step;
+            }
+        },
+        components: {
+            counter: counter
+        }
+    });
+</script>
+
+</html>
+<style>
+    body {
+        font-size: xx-large;
+    }
+</style>

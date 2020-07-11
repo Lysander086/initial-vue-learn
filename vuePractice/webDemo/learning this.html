@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>组件测试</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <h3 style="text-align:center;">当前时间：{{DataNow}}</h3>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            DataNow: new Date(),
+        },
+        mounted: function () {
+            var _this = this; //声明一个变量指向Vue实例this，保证作用域一致
+            this.timer = setTimeout(function () {
+                console.log("in setTimeout : ", this);
+                console.log("in setTimeout : ", _this);
+                _this.DataNow = new Date(); //修改数据date
+            }, 1000);
+        },
+        beforeDestroy: function () {
+            if (this.timer) {
+                clearInterval(this.timer); //在Vue实例销毁前，清除我们的定时器
+            }
+        }
+    })
+    setTimeout(function () {
+        app.$destroy();
+    }, 2000)
+</script>
+</body>
+</html>
+

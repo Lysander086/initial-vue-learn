@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>slot </title>
+    <!-- vue dependency   -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<div id="app">
+<!--    <child content="<p>Dell</p>"></child>-->
+<!--    <child >-->
+<!--        <h1>Dell</h1>-->
+<!--    </child>-->
+    <body-content>
+        <div class="header">header here</div>
+        <div class="footer">footer here</div>
+    </body-content>
+</div>
+</body>
+<script>
+
+    Vue.component('bodyContent', {
+        template: `<div>
+                        <slot></slot>
+                         <div class="content">some content here</div>
+                        <slot></slot>
+                    </div>`,
+        props: ['content']
+    });
+    // Vue.component('child', {
+    //     template: `<div>
+    //                     <p>hello</p>
+    //                     <div v-html="this.content"></div>
+    //                 </div>`,
+    //     props: ['content']
+    // });
+    // Vue.component('child', {
+    //     template: `<div>
+    //         <p>follows slot below</p>
+    //         <slot>Default content here</slot>
+    //                 </div>`,
+    //     props: ['content']
+    // });
+    const vm = new Vue({
+        el: '#app'
+
+    });
+</script>
+
+</html>
+<style>
+    body {
+        font-size: xx-large;
+    }
+</style>

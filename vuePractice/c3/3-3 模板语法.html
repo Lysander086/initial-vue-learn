@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template file</title>
+    <!-- vue dependency   -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<div id="root">
+<!--    {{}}-->
+    <div v-text="name"></div>
+    <div v-html="name2"></div>
+
+</div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#root',
+        data:{
+            name: "Lysander",
+            name2: "<h1>Lysander</h1>"
+        }
+    })
+</script>
+
+</html>

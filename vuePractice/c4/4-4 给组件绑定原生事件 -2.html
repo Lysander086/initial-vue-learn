@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template file</title>
+    <!-- vue dependency   -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<div id="app">
+<!--    <child @click="handleClick"></child>  这里绑定的是自定义事件-->
+    <!--    绑定监听原生事件 -->
+    <child @click.native="handleClick"></child>
+</div>
+</body>
+<script>
+    Vue.component('child', {
+        template: '<div>child component</div>',
+        methods:{
+        }
+    });
+
+    const vm = new Vue({
+        el: '#app',
+        methods: {
+            handleClick(){
+                console.log("root click");
+            }
+        }
+
+    });
+</script>
+
+</html>
+<style>
+    body {
+        font-size: xx-large;
+    }
+</style>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template file</title>
+    <!-- vue dependency   -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <button @click="handleBtnClick">Add</button>
+    <transition-group><!-- 相当于 -->
+        <div v-for="item of  list" :key="item.id">{{item.title}}</div>
+    </transition-group>
+
+
+</div>
+</body>
+<script>
+    let count = 0;
+
+    Vue.component('child', {
+        template: '<div>child</div>'
+    });
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            list: []
+        },
+        methods: {
+            handleBtnClick() {
+                this.list.push({
+                    id: count++,
+                    title: 'hi world'
+                });
+            }
+        }
+
+    });
+</script>
+
+</html>
+<style>
+    body {
+        font-size: xx-large;
+    }
+
+    .v-enter, .v-leave-to {
+        opacity: 0;
+    }
+
+    .v-enter-active, .v-leave-active {
+        transition: opacity 1s;
+    }
+</style>

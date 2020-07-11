@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template file</title>
+    <!-- vue dependency   -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.0/animate.compat.min.css">
+
+</head>
+<body>
+<div id="app">
+    <transition @before-enter="handleBeforeEnter" @enter="handleEnter" @after-enter="handleAfterEnter">
+        <div v-if="show">hi world</div>
+    </transition>
+    <button @click="handleClick">toggle</button>
+</div>
+</body>
+<script>
+    Vue.component('child', {
+        template: '<div>child</div>'
+    });
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            show: true
+        },
+        methods: {
+            handleClick() {
+                this.show = !this.show;
+            },
+            handleBeforeEnter(el) {
+                console.log('handleBeforeEnter');
+                el.style.color = 'red';
+            },
+            handleEnter(el, done) {
+                console.log("handleEnter");
+                setTimeout(() => {
+                    el.style.color = 'green';
+                    done();
+                }, 2000);
+            },
+            handleAfterEnter(el) {
+                setTimeout(() => {
+                    el.style.color = 'black';
+                }, 2000);
+            }
+        }
+    });
+</script>
+
+</html>
+<style>
+    body {
+        font-size: xx-large;
+    }
+
+
+    .v-enter-active {
+        transform-origin: left center;
+        animation: bounce-in 1s;
+    }
+
+    .v-leave-active {
+        transform-origin: left center;
+        animation: bounce-in 1s reverse;
+    }
+</style>

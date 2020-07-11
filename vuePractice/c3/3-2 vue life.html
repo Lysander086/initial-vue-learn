@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template file</title>
+    <!-- vue dependency   -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<div id="root">
+    <div>replaced?</div>
+</div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#root'
+        , template: "<div>hello</div>",
+        beforeMount() {
+            console.log("beforeMount");
+            console.log(this.$el);
+        },
+        mounted() {
+            console.log("mounted");
+            console.log(this.$el);
+        },
+        beforeDestroy() {
+        },
+        destroyed() {
+
+        }
+    });
+</script>
+
+</html>

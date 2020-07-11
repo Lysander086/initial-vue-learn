@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template file</title>
+    <!-- vue dependency   -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.0/animate.compat.min.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/velocity/2.0.6/velocity.js"></script>
+
+</head>
+<body>
+<div id="app">
+<!--    <transition mode="in-out"  doesnt work  -->
+    <transition mode="out-in"
+                @before-enter="handleBeforeEnter" @enter="handleEnter" @after-enter="handleAfterEnter">
+<!--        <child v-if="show"></child>-->
+<!--        <child-one v-else></child-one>-->
+        <component :is="type"></component>
+
+    </transition>
+    <button @click="handleClick">toggle</button>
+</div>
+</body>
+<script>
+    Vue.component('child', {
+        template: '<div>child</div>'
+    });
+    Vue.component('childOne', {
+        template: '<div>child 1</div>'
+    });
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            show: true,
+            type: "child"
+        },
+        methods: {
+            handleClick() {
+                this.show = !this.show;
+                this.type = (this.type === "child" ? "child-one" : "child");
+            },
+            handleBeforeEnter(el) {
+            },
+            handleEnter(el, done) {
+            },
+            handleAfterEnter(el) {
+                console.log("animation end");
+            }
+        }
+    });
+</script>
+
+</html>
+<style>
+    body {
+        font-size: xx-large;
+    }
+
+    .v-enter, .v-leave-to {
+        opacity: 0;
+    }
+
+    .v-enter-active, .v-leave-active {
+        transition: opacity 1s;
+    }
+</style>

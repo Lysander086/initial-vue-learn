@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4-5 非父子组件间的传值 (bus/观察者模式)</title>
+    <!-- vue dependency   -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <child content="Dell"></child>
+    <child content="Lee"></child>
+</div>
+</body>
+<script>
+    Vue.prototype.bus = new Vue();
+
+
+    Vue.component('child', {
+        data(){
+            return{
+                selfContent: this.content
+            }
+        },
+        template: '<div @click="handleClick">{{selfContent}}</div>',
+        props: {content: String},
+        methods: {
+            handleClick() {
+                console.log("in child", this.selfContent);
+                this.bus.$emit('change', this.selfContent);
+            }
+        },
+        mounted() {
+            // on 监听事件
+            let _this = this;
+            this.bus.$on('change', function (msg) {
+                _this.selfContent = msg;
+                console.log("on listening", msg);
+            });
+        }
+    });
+
+    const vm = new Vue({
+        el: '#app',
+        methods: {
+            handleClick() {
+                console.log("root click");
+            }
+        }
+
+    });
+</script>
+
+</html>
+<style>
+    body {
+        font-size: xx-large;
+    }
+</style>

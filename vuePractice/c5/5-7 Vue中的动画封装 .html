@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template file</title>
+    <!-- vue dependency   -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <!--    <transition>  默认名字为v-->
+    <!--    <transition name="fade">-->
+    <fade :show="this.show">
+        <div>hi world</div>
+    </fade>
+    <fade :show="this.show">
+        <h1>hi world</h1>
+    </fade>
+    <button @click="handleClick">toggle</button>
+</div>
+</body>
+<script>
+    Vue.component('fade', {
+        props: ['show'],
+        template: `
+            <transition @before-enter="handleBeforeEnter" @enter="handleEnter">
+                <slot v-if="show"></slot>
+            </transition>`,
+        methods: {
+            handleBeforeEnter(el) {
+                setTimeout(() => {
+                    el.style.color = 'red';
+                }, 1000);
+            },
+            handleEnter(el) {
+                setTimeout(() => {
+                    el.style.color = 'green';
+                }, 2000);
+            }
+        }
+    });
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            show: true
+        },
+        methods: {
+            handleClick() {
+                this.show = !this.show;
+            },
+
+        }
+    });
+</script>
+
+</html>
+<style>
+    body {
+        font-size: xx-large;
+        font-family: "YaHei Consolas Hybrid";
+    }
+
+    .v-enter, .v-leave-to {
+        opacity: 0;
+    }
+
+    .v-enter-active, .v-leave-active {
+        transition: opacity 1s;
+    }
+</style>

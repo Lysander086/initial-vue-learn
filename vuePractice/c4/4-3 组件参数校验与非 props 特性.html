@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template file</title>
+    <!-- vue dependency   -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <!--    <div ref="hello" @click="handleClick"></div>-->
+    <div>
+        <child :content=this.content></child>
+    </div>
+</div>
+</body>
+<script>
+    //    定义全局组件
+    Vue.component('child', {
+        // props: ['content'],
+        props: {
+            // content: [String, Number], //指定类型的写法
+            content: { // 定义校验规则
+                required: true,
+                type: [String, Number],
+                default: 'default value',
+                validator: function (value) {
+                    return value.length > 5;
+                }
+            }
+        },
+        template: '<div @click="handleClick">{{content}}</div>',
+        methods:{
+            handleClick(){
+                this.content += " s";
+            }
+        }
+    });
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            total: 1,
+            content: "string here"
+        },
+        methods: {},
+        components: {}
+    });
+</script>
+
+</html>
+<style>
+    body {
+        font-size: xx-large;
+    }
+</style>
