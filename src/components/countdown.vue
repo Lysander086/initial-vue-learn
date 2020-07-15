@@ -1,21 +1,25 @@
 <template>
-  <div class="blog-post">
-    <h3>{{ post.title }}</h3>
-    <button>
-      Enlarge text
-    </button>
-    <div v-html="post.content"></div>
+  <div>
+    <button @click="handleClick">increment</button><p>{{total}}</p>
   </div>
 </template>
 
 
 <script>
   export default {
-    data() {
+    data: function () {
+      return {
+        total: 0
+      };
+    },
+    methods: {
+      handleClick() {
+        this.total++;
+      }
     },
     mounted() {
+
     },
-    props: {
-    }
+    props: {}
   };
 </script>

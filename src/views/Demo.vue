@@ -1,24 +1,17 @@
 <template>
   <div>
     <h1>Lysander</h1>
-    <p>{{reversedMessage}}</p>
-    <p>{{msg | capitalize}}</p>
-    <div class="static"></div>
-    <div>----------------------------</div>
-    <h1>列表</h1>
-    <div>---------------------------------------</div>
-    <ul id="example-3">
-      <li v-for="(value, key) in obj">
-        {{ key }} : {{ value }}
-      </li>
-    </ul>
+    <countdown></countdown>
   </div>
 </template>
 
 <script>
   export default {
     name: 'Demo',
-    components: {},
+    components: {
+      countdown: () =>
+        import(/* webpackChunkName: "DestinationDetails"*/ "@/components/countdown"),
+    },
     data() {
       return {
         msg: "hi",
@@ -27,7 +20,7 @@
           lastName: 'Doe',
           age: 30
         }
-      }
+      };
     },
     methods: {},
     computed: {
@@ -45,5 +38,5 @@
 
     },
 
-  }
+  };
 </script>
