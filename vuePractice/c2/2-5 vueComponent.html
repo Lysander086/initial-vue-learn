@@ -1,48 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>TODO list</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <meta charset="UTF-8">
+  <title>TODO list</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
 <div id="app">
-    <input type="text" v-model="inputValue">
-    <button v-on:click="handleBtnClick">提交</button>
-    <ul>
-        <todo-item v-bind:item-content="item" v-for="item in list"></todo-item>
-    </ul>
+  <input type="text" v-model="inputValue">
+  <button v-on:click="handleBtnClick">提交</button>
+  <ul>
+    <todo-item v-bind:item-content="item" v-for="item in list"></todo-item>
+  </ul>
 </div>
 <script>
-    // 定义全局组件
-    // Vue.component("TodoItem", {
-    //     props: ['itemContent'], // 使用父组件 app传来的数据需要定义props
-    //     template: "<li>{{this.itemContent}}</li>"
-    // });
+// 定义全局组件
+// Vue.component("TodoItem", {
+//     props: ['itemContent'], // 使用父组件 app传来的数据需要定义props
+//     template: "<li>{{this.itemContent}}</li>"
+// });
 
-    // 定义局部组件
-    var TodoItem = {
-        props: ['itemContent'], // 使用父组件 app传来的数据需要定义props
-        template: "<li>{{itemContent}}</li>"
+// 定义局部组件
+var TodoItem = {
+  props: ['itemContent'], // 使用父组件 app传来的数据需要定义props
+  template: "<li>{{itemContent}}</li>"
+};
 
-    };
-
-    const app = new Vue({
-        el: '#app', // 需要接管的dom元素
-        data: { // 可通过app.$data获取
-            list: ['detail of 1st class', 'detail of 2nd class'],
-            inputValue: ''
-        },
-        methods: {
-            handleBtnClick: function () {
-                this.list.push(this.inputValue);
-                this.inputValue = '';
-            }
-        },
-        components:{
-            TodoItem
-        }
-    });
+const app = new Vue({
+  el: '#app', // 需要接管的dom元素
+  data: { // 可通过app.$data获取
+    list: ['detail of 1st class', 'detail of 2nd class'],
+    inputValue: ''
+  },
+  methods: {
+    handleBtnClick: function () {
+      this.list.push(this.inputValue);
+      this.inputValue = '';
+    }
+  },
+  components: {
+    TodoItem
+  }
+});
 </script>
 </body>
 
@@ -50,8 +49,8 @@
 
 
 <style>
-    body {
-        font-family: "Microsoft YaHei";
-    }
+body {
+  font-family: "Microsoft YaHei";
+}
 
 </style>

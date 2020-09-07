@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TODO list</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="header__nav">
+  <input type="text" v-model="inputValue">
+  <button>提交</button>
+  <ul>
+    <todo-item :item-content="item" v-for="item in list"></todo-item>
+  </ul>
+</div>
+<script src="./myApp.js"></script>
+</body>
+
+</html>
+
+
+<style>
+body {
+  font-family: "Microsoft YaHei";
+}
+
+</style>

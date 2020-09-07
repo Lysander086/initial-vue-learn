@@ -1,39 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>template file</title>
-    <!-- vue dependency   -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <meta charset="UTF-8">
+  <title>template file</title>
+  <!-- vue dependency   -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 </head>
 <body>
 <div id="app">
-    <div @click="handleDivClick" :class="{activated: isActivated}">hi world</div>
-    <div @click="handleDivClick2" :class="[activated2]">hi world</div>
+  <div @click="handleDivClick" :class="{'screen-4__sec1_left__item2_active' : true}">hi world</div>
+  <div @click="handleDivClick2" :class="[activated2]">hi world</div>
 </div>
 </body>
 <script>
-    var vm = new Vue({
-        el: '#app',
-        data:{
-            isActivated: false,
-            activated2: ""
-        },
-        methods: {
-            handleDivClick() {
-                this.isActivated = !this.isActivated;
-            },
-            handleDivClick2() {
-                this.activated2 = "activated"
-            }
-        }
-    });
+var vm = new Vue({
+  el: '#app',
+  data: {
+    isActivated: false,
+    activated2: ""
+  },
+  methods: {
+    handleDivClick() {
+      this.isActivated = !this.isActivated;
+    },
+    handleDivClick2() {
+      this.activated2 = "activated"
+    }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.isActivated = true
+    }, 3000)
+  }
+//  :class="{ screen-4__sec1_left__item2_active: activeIndex === 1}"
+});
 </script>
 
 </html>
 <style>
-    .activated{
-        color: red;
-    }
+.activated {
+  color: red;
+}
+
+.screen-4__sec1_left__item2_active {
+  font-size: xx-large;
+}
 </style>

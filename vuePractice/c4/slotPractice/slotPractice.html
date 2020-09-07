@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<!-- vue dependency   -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<div id="app">
+	<child-component>
+		<template slot="text1" slot-scope="data">
+			福福福
+		</template>
+		<p slot="text2" slot-scope="data">
+			{{ data.text }}
+		</p>
+	</child-component>
+</div>
+</body>
+</html>
+
+<script>
+  Vue.component('child-component', {
+    template: `<div>
+    <slot name="text1" content="我多想再见你，哪怕匆匆一眼就别离">默认内容</slot>
+    <slot name="text2" text="路灯下昏黄的剪影，越走越漫长的林径"></slot>
+  </div>`
+  })
+
+  var app = new Vue({
+    el: '#app',
+    data: {}
+  })
+</script>
