@@ -6,10 +6,15 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
-    alias: "/demo",
+    path: "/demo",
     name: 'Demo',
     component: Demo
+  },
+  {
+    path: "/parent",
+    alias: "/",
+    name: 'Parent',
+    component: () => import('@/views/Parent')
   }
 ];
 

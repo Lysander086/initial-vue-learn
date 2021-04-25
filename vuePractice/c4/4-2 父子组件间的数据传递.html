@@ -10,41 +10,44 @@
 <body>
 <div id="app">
     <!--    <div ref="hello" @click="handleClick"></div>-->
-    <counter :count="0" @inc="handleIncrease"></counter>
-    <counter :count="1" @inc="handleIncrease"></counter>
-        <div>{{total}}</div>
+    <!-- 冒号后面跟着本组件中要接受的来自父组件的数据 -->
+    <counter :count="initalNum" @inc="handleIncrease"></counter>
+    <div>{{total}}</div>
 </div>
 </body>
 <script>
-    var counter = {
-        template: '<div @click="handleClick">{{number}}</div>',
-        props: ['count'], // 使用父组件传递过来的值, 尽量只能读取
-        data() {
-            return {
-                number: this.count
-            };
-        },
-        methods: {
-            handleClick() {
-                this.number++;
-                this.$emit('inc', 1);
-            }
-        }
-    };
-    var vm = new Vue({
-        el: '#app',
-        data: {
-            total: 1
-        },
-        methods: {
-            handleIncrease(step) {
-                this.total += step;
-            }
-        },
-        components: {
-            counter: counter
-        }
-    });
+  const counter = {
+    template: '<div @click="handleClick">{{number}}</div>',
+    props: ['count'], // 使用父组件传递过来的值, 尽量只能读取
+    data() {
+      return {
+        number: this.count
+      };
+    },
+    methods: {
+      handleClick() {
+        this.number++;
+        console.log("count: ", this.count)
+        // @后面跟着子组件想要emit的事件名称
+        this.$emit('inc', 1);
+      }
+    }
+  };
+  const vm = new Vue({
+    el: '#app',
+    data: {
+      initalNum: 2,
+      total: 0
+    },
+    methods: {
+      handleIncrease(step) {
+        this.total += step;
+      }
+    },
+    components: {
+      counter: counter
+    }
+  });
 </script>
 
 </html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>js basics </title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.19/lodash.js"></script>
+</head>
+<body>
+<div id="app">
+</div>
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {},
+    mounted: function () {
+      let arr = [-3, -1, 4];
+      let doubled = arr.map(num => {
+        return num * 2;
+      });
+      console.log(doubled);
+      console.log('arr' , arr);
+    },
+    beforeDestroy: function () {
+    }
+  });
+</script>
+</body>
+</html>
+

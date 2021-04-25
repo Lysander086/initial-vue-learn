@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template file</title>
+    <!-- vue dependency   -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/require.js/2.3.6/require.js"></script>
+</head>
+<body>
+<div id="app">
+    <child></child>
+</div>
+</body>
+<script>
+  var fs = require('fs');
+
+  var readFile = function (fileName) {
+    return new Promise(function (resolve, reject) {
+      fs.readFile(fileName, function (error, data) {
+        if (error) reject(error);
+        resolve(data);
+      });
+    });
+  };
+
+  var gen = function* () {
+    var f1 = yield readFile('./t1.txt');
+    var f2 = yield readFile('./t2.txt');
+    console.log(f1.toString());
+    console.log(f2.toString());
+  };
+</script>
+
+</html>
+<style>
+    body {
+        font-size: xx-large;
+    }
+</style>

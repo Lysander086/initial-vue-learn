@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template file</title>
+    <!-- vue dependency   -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<div id="app">
+<!--    <child @click="handleClick"></child>  这里绑定的是自定义事件-->
+    <button @click="handleClick('hi')">提示</button>
+</div>
+</body>
+<script>
+
+    const vm = new Vue({
+        el: '#app',
+        methods: {
+            handleClick(){
+                alert('hi')
+            }
+        }
+
+    });
+</script>
+
+</html>
+<style>
+    body {
+        font-size: xx-large;
+    }
+</style>

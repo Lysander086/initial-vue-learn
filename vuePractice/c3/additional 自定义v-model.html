@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template file</title>
+    <!-- vue dependency   -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<div id="root">
+    <!--    {{}}-->
+    <div v-text="name"></div>
+    <div v-html="name2"></div>
+
+</div>
+</body>
+<script>
+  // import Vue from 'vue'
+
+  const component = {
+    props: ['value'],
+    /* input内
+        @input 是vue的内置监听方法, 相当于v-on:input
+        :前面相当于本div元素里面自由的属性, :后面的value相当于props中定义的属性   */
+    template: `
+        <div>
+            <input type="text" v-on:input="handleInput" :value="value"/>
+        </div>
+    `
+    ,
+    methods: {
+      handleInput(e) {
+        this.$emit('input', e.target.value);
+      }
+    }
+  };
+
+  new Vue({
+    el: '#root',
+    data() {
+      return {
+        value: '123'
+      };
+    },
+    template: `
+        <div>
+            <comp-one :value="value" @input="value = arguments[0]"></comp-one>
+        </div>
+    `,
+    components: {
+      CompOne: component
+    }
+  });
+
+</script>
+
+</html>
